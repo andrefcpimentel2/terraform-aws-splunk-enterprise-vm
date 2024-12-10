@@ -70,7 +70,7 @@ resource "aws_security_group" "splunk_sg" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["${var.host_access_ip}/32"]
+      cidr_blocks = var.host_access_ip
     }
   }
 
@@ -86,7 +86,7 @@ resource "aws_security_group" "splunk_sg" {
     from_port   = 8000
     to_port     = 8000
     protocol    = "tcp"
-    cidr_blocks = ["${var.host_access_ip}/32"]
+    cidr_blocks = var.host_access_ip
   }
 
   egress {
