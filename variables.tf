@@ -49,7 +49,7 @@ variable "vpc_cidr_block" {
 
 variable "cidr_blocks" {
   description = "The CIDR blocks to create the workstations in."
-  default     = ["10.1.1.0/24"]
+  default     = "10.1.1.0/24"
 }
 
 
