@@ -37,7 +37,6 @@ resource "aws_subnet" "my_subnet" {
 
 resource "aws_network_interface" "network_interface" {
   subnet_id       = aws_subnet.my_subnet.id
-  private_ips     = [var.host_access_ip]
   security_groups = [aws_security_group.splunk_sg.id]
   tags = {
     Name = "primary_network_interface"
