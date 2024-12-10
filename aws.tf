@@ -1,3 +1,11 @@
+provider "aws" {
+   region  = var.region
+  #  alias   = "primary"
+   # default_tags {
+   #   tags = local.common_tags
+  #  }
+}
+
 # Get Availability zones in the Region
 data "aws_availability_zones" "AZ" {}
 
@@ -23,7 +31,7 @@ resource "aws_subnet" "my_subnet" {
   availability_zone       = data.aws_availability_zones.AZ.names[0]
   map_public_ip_on_launch = true
 
-  
+
   tags =  local.common_tags
 }
 
