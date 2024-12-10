@@ -64,14 +64,11 @@ resource "aws_security_group" "splunk_sg" {
   name_prefix = var.namespace
   vpc_id      = aws_vpc.my_vpc.id
 
-  dynamic "ingress" {
-    for_each = var.host_access_ip
-    content {
+  ingress {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = var.host_access_ip
-    }
   }
 
   ingress {
