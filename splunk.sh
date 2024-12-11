@@ -53,7 +53,9 @@ echo "==> Run Splunk Container"
 
 sudo docker pull splunk/splunk:latest
 
+# Docker permission issue
 sudo usermod -a -G docker $USER
+newgrp docker
 
 sudo docker run -d -p 8000:8000 -e SPLUNK_START_ARGS='--accept-license' -e SPLUNK_PASSWORD='${password}' splunk/splunk:latest
 
