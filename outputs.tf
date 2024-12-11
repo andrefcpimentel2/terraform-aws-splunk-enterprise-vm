@@ -6,7 +6,7 @@ output "splunk_username" {
   value = "admin"
 }
 
-output "splunk_password" {
-  value = "SPLUNK-${aws_instance.splunk_ent.id}"
+output "token_value" {
+ value = nonsensitive(random_password.password.result)
 }
 

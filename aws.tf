@@ -82,7 +82,7 @@ resource "aws_security_group" "splunk_sg" {
     from_port   = 8000
     to_port     = 8000
     protocol    = "tcp"
-    cidr_blocks = var.host_access_ip
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
