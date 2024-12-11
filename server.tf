@@ -32,6 +32,18 @@ resource "aws_instance" "splunk_ent" {
   availability_zone = data.aws_availability_zones.AZ.names[0]
 
   user_data = data.cloudinit_config.servers.rendered
+
+    root_block_device {
+    volume_size           = "240"
+    delete_on_termination = "true"
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/xvdd"
+    volume_type           = "gp2"
+    volume_size           = "240"
+    delete_on_termination = "true"
+  }
 }
 
 resource "random_password" "password" {
