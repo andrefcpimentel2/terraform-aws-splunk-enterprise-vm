@@ -1,5 +1,5 @@
 output "splunk_addr" {
-  value = aws_instance.splunk_ent.public_ip
+  value = "http://${aws_instance.splunk_ent.public_ip}:8000"
 }
 
 output "splunk_username" {
