@@ -56,6 +56,6 @@ data "template_file" "init" {
   template = "${file("splunk.sh")}"
   vars = {
     splunk_password = random_password.password.result
-        namespace = var.namespace
+    namespace = var.namespace
   }
 }

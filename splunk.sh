@@ -58,7 +58,7 @@ sudo usermod -a -G docker $USER
 newgrp docker
 sudo mkdir -p /opt/splunk/etc
 sudo tee /opt/splunk/etc/hec-token > /dev/null <<EOF
-${var.namespace}
+${namespace}
 EOF
 
 
@@ -70,6 +70,6 @@ sudo docker run -d \
     -p 8089:8089 \
     -p 9997:9997 \
     -e SPLUNK_START_ARGS=--accept-license \
-    -e SPLUNK_PASSWORD=${var.splunk_password} \
-    -e SPLUNK_HEC_TOKEN=${var.namespace} \
+    -e SPLUNK_PASSWORD=${splunk_password} \
+    -e SPLUNK_HEC_TOKEN=${namespace} \
     splunk/splunk:latest
