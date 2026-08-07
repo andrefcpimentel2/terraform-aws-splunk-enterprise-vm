@@ -10,3 +10,6 @@ output "token_value" {
  value = nonsensitive(random_password.password.result)
 }
 
+output "HEC_TOKEN" {
+ value = var.namespace
+}
