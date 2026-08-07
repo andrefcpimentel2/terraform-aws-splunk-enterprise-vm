@@ -63,6 +63,7 @@ data "cloudinit_config" "servers" {
     content_type = "text/x-shellscript"
     content      = templatefile("splunk.sh",{
         password = random_password.password.result
+        namespace = var.namespace
     })
    }
 }
