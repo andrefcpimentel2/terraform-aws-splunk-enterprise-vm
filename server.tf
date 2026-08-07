@@ -30,9 +30,8 @@ resource "aws_instance" "splunk_ent" {
     device_index         = 0
   }
   availability_zone = data.aws_availability_zones.AZ.names[0]
-
-  user_data = data.cloudinit_config.servers.rendered
-
+  user_data                   = data.template_file.userdata.rendered
+  
     root_block_device {
     volume_size           = "240"
     delete_on_termination = "true"
@@ -52,18 +51,11 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-# Gzip cloud-init config
-data "cloudinit_config" "servers" {
 
-  gzip          = true
-  base64_encode = true
-
-  #base
-  part {
-    content_type = "text/x-shellscript"
-    content      = templatefile("splunk.sh",{
-        splunk_password = random_password.password.result
+data "template_file" "init" {
+  template = "${file("splunk.sh")}"
+  vars = {
+    splunk_password = random_password.password.result
         namespace = var.namespace
-    })
-   }
+  }
 }
