@@ -30,7 +30,7 @@ resource "aws_instance" "splunk_ent" {
     device_index         = 0
   }
   availability_zone = data.aws_availability_zones.AZ.names[0]
-  user_data                   = data.template_file.userdata.rendered
+  user_data                   = data.template_file.init.rendered
   
     root_block_device {
     volume_size           = "240"
