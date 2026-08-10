@@ -69,7 +69,8 @@ sudo docker run -d \
     -p 8088:8088 \
     -p 8089:8089 \
     -p 9997:9997 \
-    -e SPLUNK_START_ARGS=--accept-license \
-    -e SPLUNK_PASSWORD=${splunk_password} \
-    -e SPLUNK_HEC_TOKEN=${namespace} \
+    -e "SPLUNK_START_ARGS=--accept-license" \
+    -e "SPLUNK_PASSWORD=${splunk_password}" \
+    -e "SPLUNK_HEC_TOKEN=${namespace}" \
+    -e "SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com" \
     splunk/splunk:latest
