@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = [format("hc-base-ubuntu-2404-%s-*", "arm64")]
+    values = [format("hc-base-ubuntu-2404-%s-*", "amd64")]
     # values = [format("hc-base-ubuntu-2404-%s-*", each.value)]
   }
   filter {
