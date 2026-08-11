@@ -1,21 +1,17 @@
 data "aws_ami" "ubuntu" {
-  most_recent = true
+#  for_each = toset(["amd64", "arm64"])
 
-# ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*
-#ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*
   filter {
     name   = "name"
-    # values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
-    #  values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-      values = ["ubuntu/images/*ubuntu-jammy-22.04-amd64-server-*"]
+    values = [format("hc-base-ubuntu-2404-%s-*", "arm64")]
+    # values = [format("hc-base-ubuntu-2404-%s-*", each.value)]
   }
-
   filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+    name   = "state"
+    values = ["available"]
   }
-
-  owners = ["099720109477"] # Canonical
+  most_recent = true
+  owners      = ["888995627335"] # hc-ami_prod
 }
 
 resource "aws_instance" "splunk_ent" {

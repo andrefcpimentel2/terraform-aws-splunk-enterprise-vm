@@ -62,15 +62,5 @@ ${namespace}
 EOF
 
 
-sudo docker run -d \
-    --name splunk \
-    --restart unless-stopped \
-    -p 8000:8000 \
-    -p 8088:8088 \
-    -p 8089:8089 \
-    -p 9997:9997 \
-    -e "SPLUNK_START_ARGS=--accept-license" \
-    -e "SPLUNK_PASSWORD=${splunk_password}" \
-    -e "SPLUNK_HEC_TOKEN=${namespace}" \
-    -e "SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com" \
-    splunk/splunk:latest
+sudo docker run -p 8000:8000 -p 8088:8088 -p 8089:8089 -p 9997:9997 -e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com -e SPLUNK_START_ARGS=--accept-license -e SPLUNK_HEC_TOKEN=${namespace} -e SPLUNK_PASSWORD=${splunk_password} splunk/splunk 
+
